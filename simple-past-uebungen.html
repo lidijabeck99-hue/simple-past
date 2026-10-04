@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simple Past – Self-Check Practice</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#1d2433;--muted:#5d6678;--accent:#3b5bdb;--ok:#2b8a3e;--okbg:#e6f6ea;--bad:#c92a2a;--badbg:#fdeaea;--line:#dde1ea;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171f;--card:#1e222d;--text:#e8ebf2;--muted:#9aa3b5;--accent:#8ea2ff;--ok:#69db7c;--okbg:#18301f;--bad:#ff8787;--badbg:#3a1c1c;--line:#323848}}
+:root[data-theme="dark"]{--bg:#14171f;--card:#1e222d;--text:#e8ebf2;--muted:#9aa3b5;--accent:#8ea2ff;--ok:#69db7c;--okbg:#18301f;--bad:#ff8787;--badbg:#3a1c1c;--line:#323848}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.6rem;margin:.2em 0}
+h2{font-size:1.15rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0}
+.rule b{color:var(--accent)}
+.rule ul{margin:6px 0 0;padding-left:20px}
+.item{padding:8px 10px;border-radius:10px;margin:6px 0;border:1px solid transparent}
+.item.ok{background:var(--okbg);border-color:var(--ok)}
+.item.bad{background:var(--badbg);border-color:var(--bad)}
+input[type=text]{font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 8px;width:9.5em;max-width:100%}
+input.wide{width:100%;margin-top:6px}
+.opt{display:inline-block;margin:4px 14px 0 0;cursor:pointer}
+.sol{display:none;font-size:.9rem;color:var(--muted);margin-top:4px}
+.item.bad .sol.on{display:block}
+.mark{float:right;font-weight:700}
+.ok .mark{color:var(--ok)}.bad .mark{color:var(--bad)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:8px 14px;cursor:pointer}
+button.main{background:var(--accent);color:#fff;border-color:var(--accent)}
+.score{font-weight:600;margin-left:auto}
+#total{text-align:center;font-size:1.2rem}
+</style>
+</head>
+<body>
+<main>
+<h1>🕰️ Simple Past – Practice</h1>
+<p class="sub">Do the exercises and click “Check”. Wrong answers turn red – try again! Only click “Show solution” if you are stuck.</p>
+
+<div class="card rule">
+<h2>Remember</h2>
+<ul>
+<li><b>Regular verbs:</b> infinitive + <b>-ed</b> (play → play<b>ed</b>, live → live<b>d</b>, study → stud<b>ied</b>, stop → stop<b>ped</b>)</li>
+<li><b>Irregular verbs:</b> special forms – learn them by heart (go → <b>went</b>, see → <b>saw</b>)</li>
+<li><b>Negatives:</b> <b>didn't</b> + infinitive (I didn't go.) – but: wasn't / weren't</li>
+<li><b>Questions:</b> <b>Did</b> + subject + infinitive? (Did you go?) – but: Was / Were …?</li>
+<li><b>With a question word:</b> question word + did + subject + infinitive? (Where <b>did</b> you go?) – but: Why <b>were</b> they late?</li>
+</ul>
+</div>
+
+<div id="sections"></div>
+<div class="card" id="total"></div>
+<div class="bar" style="justify-content:center"><button class="main" onclick="checkAll()">Check all</button></div>
+</main>
+
+<script>
+const EX=[
+{title:"1 · Mixed verbs",intro:"Regular or irregular? Decide for yourself and write the correct simple past form.",type:"text",items:[
+["Yesterday I ___ (get) up at seven.",["got"]],
+["We ___ (walk) to the park.",["walked"]],
+["She ___ (drink) a glass of milk.",["drank"]],
+["The film ___ (start) at eight.",["started"]],
+["He ___ (lose) his keys.",["lost"]],
+["They ___ (help) their dad in the garden.",["helped"]],
+["I ___ (meet) my friend in town.",["met"]],
+["Anna ___ (carry) the heavy bag.",["carried"]],
+["We ___ (sing) a song in class.",["sang"]],
+["The dog ___ (run) across the street.",["ran"]],
+["My brother ___ (open) the window.",["opened"]],
+["I ___ (know) the answer.",["knew"]]]},
+{title:"2 · Multiple choice",intro:"Choose the correct answer.",type:"choice",items:[
+["Yesterday I ___ my homework.",["did"],["did","done","do"]],
+["___ you at home last night?",["Were"],["Were","Was","Did"]],
+["She ___ the answer.",["didn't know"],["didn't knew","didn't know","not knew"]],
+["___ they win the match?",["Did"],["Did","Do","Were"]],
+["We ___ TV last night.",["didn't watch"],["didn't watched","didn't watch","not watch"]],
+["What ___ you do on Saturday?",["did"],["did","do","were"]],
+["Where ___ you yesterday afternoon?",["were"],["were","did","was"]],
+["He ___ his bike to school.",["didn't ride"],["didn't rode","didn't ride","not ride"]],
+["___ she call you last night?",["Did"],["Did","Was","Does"]],
+["They ___ at the party.",["weren't"],["didn't were","weren't","didn't be"]]]},
+{title:"3 · Negative sentences",intro:"Make each sentence negative (e.g. “She played tennis.” → “She didn't play tennis.”).",type:"text",items:[
+["Negative: I ate an apple.",["I didn't eat an apple","I did not eat an apple"]],
+["Negative: They visited Berlin.",["They didn't visit Berlin","They did not visit Berlin"]],
+["Negative: He was tired.",["He wasn't tired","He was not tired"]],
+["Negative: We saw the match.",["We didn't see the match","We did not see the match"]],
+["Negative: She wrote a letter.",["She didn't write a letter","She did not write a letter"]],
+["Negative: You were late.",["You weren't late","You were not late"]],
+["Negative: Tom cleaned his room.",["Tom didn't clean his room","Tom did not clean his room"]],
+["Negative: The kids took the bus.",["The kids didn't take the bus","The kids did not take the bus"]]]},
+{title:"4 · Making questions",intro:"Write a question in the simple past using the words (e.g. “you / like / pizza” → “Did you like pizza?”). Careful: no “did” with “be”!",type:"text",items:[
+["Question: you / like / the film",["Did you like the film"]],
+["Question: she / be / ill",["Was she ill"]],
+["Question: they / go / to the cinema",["Did they go to the cinema"]],
+["Question: Tom / play / football",["Did Tom play football"]],
+["Question: you / be / at school",["Were you at school"]],
+["Question: he / buy / a new phone",["Did he buy a new phone"]],
+["Question: where / you / live / last year",["Where did you live last year"]],
+["Question: what / she / eat / for lunch",["What did she eat for lunch"]],
+["Question: why / they / be / late",["Why were they late"]],
+["Question: when / we / meet / Anna",["When did we meet Anna"]]]},
+{title:"5 · Short story",intro:"Positive sentences, negatives and a question – all mixed up.",type:"text",items:[
+["Last Saturday, Ben ___ (wake) up late.",["woke"]],
+["He ___ (not / get) up at once.",["didn't get","did not get"]],
+["After breakfast he ___ (call) his friend Sam.",["called"]],
+["Sam ___ (not / answer).",["didn't answer","did not answer"]],
+["So Ben ___ (go) to Sam's house.",["went"]],
+["Sam ___ (be) in the garden.",["was"]],
+["Sam asked: \"___ you sleep well?\"",["Did"]],
+["Ben said: \"No, I ___ (not / sleep) much.\"",["didn't sleep","did not sleep"]],
+["They ___ (spend) the day together.",["spent"]],
+["They ___ (not / do) any homework.",["didn't do","did not do"]]]}
+];
+const norm=s=>(s||"").toLowerCase().replace(/[’`´]/g,"'").replace(/[.?!]+$/,"").replace(/\s+/g," ").trim();
+const box=document.getElementById("sections");
+EX.forEach((e,i)=>{
+ let h=`<div class="card" id="s${i}"><h2>${e.title}</h2><p class="sub">${e.intro}</p>`;
+ e.items.forEach((it,j)=>{
+  const id=`e${i}_${j}`;let body;
+  if(e.type==="choice"){
+   body=it[0].replace("___","<b>___</b>")+"<br>"+it[2].map((o,k)=>`<label class="opt"><input type="radio" name="${id}" value="${o}"> ${o}</label>`).join("");
+  }else if(it[0].includes("___")){
+   const [a,b]=it[0].split("___");
+   body=`${a}<input type="text" id="${id}" autocomplete="off" autocapitalize="off" spellcheck="false">${b}`;
+  }else{
+   body=`${it[0]}<input type="text" class="wide" id="${id}" autocomplete="off" autocapitalize="off" spellcheck="false">`;
+  }
+  h+=`<div class="item" id="i${id}"><span class="mark"></span>${j+1}. ${body}<div class="sol">Solution: ${it[1][0]}</div></div>`;
+ });
+ h+=`<div class="bar"><button class="main" onclick="check(${i})">Check</button><button onclick="solve(${i})">Show solution</button><button onclick="reset(${i})">Restart</button><span class="score" id="sc${i}"></span></div></div>`;
+ box.insertAdjacentHTML("beforeend",h);
+});
+function val(i,j){
+ const id=`e${i}_${j}`;
+ if(EX[i].type==="choice"){const r=document.querySelector(`input[name="${id}"]:checked`);return r?r.value:"";}
+ return document.getElementById(id).value;
+}
+function check(i){
+ let n=0;const e=EX[i];
+ e.items.forEach((it,j)=>{
+  const v=val(i,j),ok=it[1].some(a=>norm(a)===norm(v));
+  const d=document.getElementById(`ie${i}_${j}`);
+  d.classList.toggle("ok",ok);d.classList.toggle("bad",!ok);
+  d.querySelector(".mark").textContent=ok?"✓":"✗";
+  d.querySelector(".sol").classList.remove("on");
+  if(ok)n++;
+ });
+ document.getElementById("sc"+i).textContent=`${n} / ${e.items.length}`+(n===e.items.length?" 🎉":"");
+ return n;
+}
+function solve(i){
+ check(i);
+ document.querySelectorAll(`#s${i} .item.bad .sol`).forEach(s=>s.classList.add("on"));
+}
+function reset(i){
+ EX[i].items.forEach((it,j)=>{
+  const id=`e${i}_${j}`;
+  if(EX[i].type==="choice")document.querySelectorAll(`input[name="${id}"]`).forEach(r=>r.checked=false);
+  else document.getElementById(id).value="";
+  const d=document.getElementById("i"+id);d.classList.remove("ok","bad");d.querySelector(".mark").textContent="";d.querySelector(".sol").classList.remove("on");
+ });
+ document.getElementById("sc"+i).textContent="";
+}
+function checkAll(){
+ let n=0,t=0;
+ EX.forEach((e,i)=>{n+=check(i);t+=e.items.length;});
+ const p=Math.round(100*n/t);
+ document.getElementById("total").textContent=`Total: ${n} out of ${t} points (${p} %)`+(p===100?" – Perfect! 🏆":p>=75?" – Very good!":" – Practise the red ones again.");
+ document.getElementById("total").scrollIntoView({behavior:"smooth",block:"center"});
+}
+</script>
+</body>
+</html>
